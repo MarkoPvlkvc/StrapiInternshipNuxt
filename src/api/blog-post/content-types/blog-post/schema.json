@@ -17,10 +17,6 @@
       "required": true,
       "unique": true
     },
-    "Content": {
-      "type": "text",
-      "required": true
-    },
     "Image": {
       "type": "media",
       "multiple": false,
@@ -32,13 +28,33 @@
         "audios"
       ]
     },
-    "Author": {
-      "type": "string",
-      "required": true
-    },
     "Date": {
       "type": "date",
       "required": true
+    },
+    "Author": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::author.author"
+    },
+    "Content": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.seo"
+    },
+    "ImageAlt": {
+      "type": "string"
+    },
+    "Featured": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
