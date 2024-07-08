@@ -832,8 +832,7 @@ export interface ApiBlogPostBlogPost extends Schema.CollectionType {
   };
   attributes: {
     Title: Attribute.String & Attribute.Required & Attribute.Unique;
-    Image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
-      Attribute.Required;
+    Image: Attribute.Media<'images'> & Attribute.Required;
     Date: Attribute.Date & Attribute.Required;
     Author: Attribute.Relation<
       'api::blog-post.blog-post',
@@ -848,7 +847,6 @@ export interface ApiBlogPostBlogPost extends Schema.CollectionType {
         }
       >;
     seo: Attribute.Component<'shared.seo', true>;
-    ImageAlt: Attribute.String;
     Featured: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -861,6 +859,38 @@ export interface ApiBlogPostBlogPost extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::blog-post.blog-post',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEmployeeEmployee extends Schema.CollectionType {
+  collectionName: 'employees';
+  info: {
+    singularName: 'employee';
+    pluralName: 'employees';
+    displayName: 'Employee';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Image: Attribute.Media<'images'> & Attribute.Required;
+    FullName: Attribute.String;
+    Position: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::employee.employee',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::employee.employee',
       'oneToOne',
       'admin::user'
     > &
@@ -904,7 +934,7 @@ export interface ApiReviewReview extends Schema.CollectionType {
   };
   attributes: {
     Comment: Attribute.Text;
-    Image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Image: Attribute.Media<'images'>;
     FullName: Attribute.String;
     Position: Attribute.String;
     ImageAlt: Attribute.String;
@@ -946,6 +976,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::author.author': ApiAuthorAuthor;
       'api::blog-post.blog-post': ApiBlogPostBlogPost;
+      'api::employee.employee': ApiEmployeeEmployee;
       'api::faq.faq': ApiFaqFaq;
       'api::review.review': ApiReviewReview;
     }

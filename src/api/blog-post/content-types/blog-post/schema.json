@@ -22,10 +22,7 @@
       "multiple": false,
       "required": true,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     },
     "Date": {
@@ -48,9 +45,6 @@
       "type": "component",
       "repeatable": true,
       "component": "shared.seo"
-    },
-    "ImageAlt": {
-      "type": "string"
     },
     "Featured": {
       "type": "boolean",
