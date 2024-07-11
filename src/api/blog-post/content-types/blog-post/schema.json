@@ -49,6 +49,11 @@
     "Featured": {
       "type": "boolean",
       "default": false
+    },
+    "shortContent": {
+      "type": "text",
+      "required": true,
+      "maxLength": 300
     }
   }
 }

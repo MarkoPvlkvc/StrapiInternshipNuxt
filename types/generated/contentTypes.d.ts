@@ -848,6 +848,11 @@ export interface ApiBlogPostBlogPost extends Schema.CollectionType {
       >;
     seo: Attribute.Component<'shared.seo', true>;
     Featured: Attribute.Boolean & Attribute.DefaultTo<false>;
+    shortContent: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 300;
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
